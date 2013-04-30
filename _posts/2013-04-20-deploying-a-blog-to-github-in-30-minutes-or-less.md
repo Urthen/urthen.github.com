@@ -7,13 +7,13 @@ tags: ["blog", "github", "jekyll"]
 ---
 {% include JB/setup %}
 
-## An introduction to installing and setting up Jekyll
+# An introduction to installing and setting up Jekyll
 
 There's a whole lot of ways out there to start a blog. From [WordPress](http://wordpress.org/) to [Blogger](http://www.blogger.com/) to [Tumblr](http://www.tumblr.com/), you can set up your own soapbox in a matter of moments. Some of us, however, desire a more hands-on approach. Fortunately there's a way to have a completely self-managed blog without having to spend a dime on hosting costs.
 
 Enter [Github Pages](http://pages.github.com/). GitHub will let you create and host static HTML pages, or pages written with [Markdown](https://help.github.com/articles/github-flavored-markdown). Additionally, it'll let you deploy with a templating language called [Jekyll](https://github.com/mojombo/jekyll), allowing you to quickly and easily deploy blog-like pages. A final piece of the puzzle: [Jekyll Bootstrap](http://www.jekyllbootstrap.com/), a fully-featured themable blog framework that takes most of the work out of setting up a simple blog. There's excellent documentation on the Jekyll Bootstrap site detailing the very few steps neccesary to get yourself up and running. I'll be going over everything from "Hm, I should start a blog..." to "Hey, that was easy!"
 
-### Installation
+## Installation
 
 First, you'll want to make sure you've got [Ruby](http://www.ruby-lang.org/en/) installed. If you're running a Mac, it probably already is. Once you've got that, install Jekyll with `gem install jekyll`. Now create the `your-username.github.com` repository in GitHub... replace `your-username` with your actual GitHub username, of course. That's it for prerequisites, and if you're on schedule, that should have only taken about ten minutes or so.
 
@@ -26,7 +26,7 @@ Next ten minutes will be to set up and configure Jekyll Bootstrap. Following the
 
 You should now be able to go to `https://your-username.github.com/` and see the Jekyll Bootstrap demo live, as well as run `rake preview` and visit `http://localhost:4000/` to see it hosted on your machine.
 
-### Configuration
+## Configuration
 
 If you'd like to use a theme, now would be a good time to install one. Visit the [Theme browser](http://themes.jekyllbootstrap.com/) and choose one - you can adjust it later, of course, but it's just a starting point. Click "Install Theme" at the bottom left to be given a commandline to install the theme to your project. You should be given the choice to switch to that theme immediately; you can switch later with `rake theme:switch theme-name` if you wish.
 
@@ -44,7 +44,7 @@ For the Comments and Analytics sections, you'll want to set yourself up some ext
 
 Your blog should be set up, at least initially. Commit and push your repository and check it online. Time to start your first post!
 
-### Next Steps
+## Next Steps
 
 Jekyll Bootstrap comes with a sample post in the `_posts/core-samples` directory. You'll want to read this, as it contains useful information on how the Jekyll engine works. After you've read through it, delete the entire `core-samples` directory as you'll want to start your blog fresh. You can start the first post from the commandline; for example, this is the command I used to create this post: `rake post title="Deploying a blog to Github in 30 minutes or less"`
 
