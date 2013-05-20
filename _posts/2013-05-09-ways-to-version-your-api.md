@@ -9,7 +9,7 @@ tags: ["api"]
 
 # Part one: Pros and cons of various methods to version your API
 
-Anyone designing an HTTP API with versioning in mind for the first time might be surprised to learn there is no universally accepted method, nor any standard explaining how. This post will be part one of a two part series on API versioning. In this post, I'll cover some API versioning methods used today and the pros and cons of each. In part two, I'll be describing some strategies you can keep in mind when designing your API to obviate the need to version at all.
+Anyone designing an HTTP API with versioning in mind for the first time might be surprised to learn there is no universally accepted method, nor any standard explaining how. This post will be part one of a two part series on API versioning. In this post, I'll cover some API versioning methods used today and the pros and cons of each. In [part two](/2013/05/16/ways-to-version-your-api-part-2/), I'll be describing some strategies you can keep in mind when designing your API to obviate the need to version at all.
 
 There’s a lot of ways to version your API, and if you’ve ever had to change your API drastically, you’ve probably been glad you had a versioning methodology in place. If you didn’t, you probably WISH you did. However, anyone designing such a methodology for the first time might be surprised to know there is no universally accepted method for versioning your API, nor does any standard specify one.
 
@@ -35,13 +35,13 @@ I'm going to barely touch upon this method, since it's barely used, and even the
 
 ## Adding version to the URI path
 
-This is by far the most common method currently in use by APIs today. It's fairly straightforward from an initial implementation standpoint. Simply add a /v1/ or similar to the URL, like this: `http://example.com/api/v1/foo/bar`
+This is by far the most common method currently in use by APIs today. It's fairly straightforward from an initial implementation standpoint. Simply add a /v1/ or similar to the URI, like this: `http://example.com/api/v1/foo/bar`. Alternately, you can avoid putting v1 in the URI initially, and if you have to version, change the URI to `http://example.com/api_v2/foo/bar`.
 
 It's very easy to code into the first API, and it's very easy for users to understand what that number means. You can change the entire path after the version number between revisions and not break existing clients. Depending on what server technology you are using, it may be easy or hard to increment the version. If you need to copy and paste code to make this method work, you might want to stay away - it makes the separation very easy, but maintenance can be difficult. Imagine if you had to fix a bug for all versions of the API, and you're already on version ten! Find-and-replace nightmare.
 
 Deprecating a version - if you do it nicely - can be straightforward, and even easy in some technologies. Redirect all requests to the old, deprecated version resources to a newer version. You'll still want to notify users ahead of time, but this way their clients might not break when you deprecate a version. Since nobody can *not* use a version, you'll potentially break everyone if you don't give them enough time.
 
-**Short story:** If you read this entire article (and the followup) and still have no idea what you're doing, just stick /v1/ in the URL somewhere and figure it out later. This method works for everyone else in the end, you can probably get it to work too - even if you may regret it later.
+**Short story:** If you read this entire article (and the followup) and still have no idea what you're doing, just stick /v1/ in the URI somewhere and figure it out later. This method works for everyone else in the end, you can probably get it to work too - even if you may regret it later.
 
 ## Version in the query parameters
 
@@ -57,9 +57,9 @@ If you have an API that actually versions resources themselves through query par
 
 ## Passing a custom header
 
-This method is similar to the previous; instead of specifying it in the query parameters you specify it in the headers. For example, to use cURL to get from an API like this, you would specify `curl -H "Accept-version: 1.0" http://www.example.com/api/foo/bar`
+This method is similar to the previous; instead of specifying it in the query parameters you specify it in the headers. For example, to use cURL to get from an API like this, you would specify `curl -H "Accepts-version: 1.0" http://www.example.com/api/foo/bar`
 
-Largest advantage of this scheme is mostly purism: You aren't cluttering the URI with anything to do with the versioning. The URI should be specifying what the resource is, not how you want it represented. However, you also are making up headers. While from a technology standpoint it will work, it loses some purism points. 
+Largest advantage of this scheme is mostly semantics: You aren't cluttering the URI with anything to do with the versioning. The URI should be specifying what the resource is, not how you want it represented. However, you also are making up headers. While from a technology standpoint it will work, it loses some purism points. 
 
 Other benefits include easily being able to ignore it or silently upgrade if the user does not specify, or specifies a deprecated version. Downsides are similar to version in the query parameters. Additionally, depending on what tools you have it can be difficult to specify. Hint: Get [Postman for Chrome](https://chrome.google.com/webstore/detail/postman-rest-client/fdmmgilgnpjigdojojpjoooidkmcomcm?hl=en), it makes specifying headers easy!
 
@@ -69,5 +69,5 @@ Other benefits include easily being able to ignore it or silently upgrade if the
 
 For now, I'll simply mention that the [Accept header spec](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html) allows for custom vendor media types, and for parameters to be passed as part of the content negotiation. This is a perfectly valid Accepts header: "application/vnd.urthen.example?version=1.0"
 
-I'll be going over this method in much more detail in part two of API Versioning. To understand why this method is ideal in my opinion, you'll also need to understand my thoughts on how to create an unversioned API. Make sure to follow me on twitter to know when it is posted.
+I'll be going over this method in much more detail in [part two of API Versioning](/2013/05/16/ways-to-version-your-api-part-2/). To understand why this method is ideal in my opinion, you'll also need to understand my thoughts on how to create an unversioned API. Make sure to follow me on twitter to know when it is posted.
 

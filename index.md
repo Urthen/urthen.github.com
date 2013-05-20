@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Michael Pratt
+title: Michael Pratt (Urthen)
 tagline: What one developer does in his spare time...
 ---
 {% include JB/setup %}
